@@ -1,0 +1,12 @@
+.git
+.github
+.gitignore
+.Rhistory
+docs
+README.md
+LICENSE
+preview.jpg
+_quarto.yml
+index.qmd
+index.html
+styles.css
