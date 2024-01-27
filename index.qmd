@@ -1,0 +1,371 @@
+---
+title: "Accordion"
+subtitle: "Bootstrap accordion component for Quarto"
+description: "A quarto shortcode extension to add [Bootstrap accordion component](https://getbootstrap.com/docs/5.1/components/accordion/) for html format"
+author: "Roy Francis"
+date: last-modified
+date-format: DD-MMM-YYYY
+toc: true
+number-sections: true
+title-block-banner: true
+accordion:
+  - simple:
+    - header: Click here to view contents
+      body: This is the body content
+  - many-items:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+    - header: Item 3
+      body: This is the body content for item 3
+    - header: Item 4
+      body: This is the body content for item 4
+  - ac-1:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+  - ac-2:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+  - ac-3:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+      collapsed: false
+  - ac-4:
+    - header: Item 1
+      body: This is the body content for item 1
+      collapsed: false
+    - header: Item 2
+      body: This is the body content for item 2
+  - css-styling:
+    - header: This header has style
+      body: This body has style
+  - simple-formatting:
+    - header: "**How much formatting can I have in an accordion?**"
+      body: "This is **bold** and *italic*"
+  - complex-formatting:
+    - header: "**How much formatting can I have in an accordion?**" 
+      body: |
+        This is multiline yaml content.
+
+        This is **bold** and *italic*.
+        
+        This is an image link
+        
+        ![](https://images.pexels.com/photos/7604425/pexels-photo-7604425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)
+        
+        This is a markdown table.
+        
+        |Item|Category|
+        |Spools|Marketing|
+        |Cutters|Marketing|
+        |Pins|Logistics|
+      
+  - id-conflict:
+    - header: Bla
+      body: bla
+    - header: Bla
+      body: bla
+  - id-conflict-resolved:
+    - header: Bla
+      body: bla
+    - header: Bla
+      body: bla
+      id: my-id
+format:
+  html:
+   css: styles.css
+filters:
+  - accordion
+---
+
+## Install
+
+- Requires Quarto >= 1.4.0  
+- In the root of the quarto project, run in terminal:  
+
+```bash
+quarto add royfrancis/quarto-accordion
+```
+
+This will install the extension under the `_extensions` subdirectory.
+
+## Usage
+
+- Add `accordion` to filters  
+- Define accordion contents (header, body) under yaml keyword `accordion`  
+- Insert shortcode in the quarto document  
+
+Here is the syntax where `[text]` is replaced as needed.
+
+```yaml
+---
+accordion:
+  - [label]:
+    - header: [text content for the header]
+      body: [text content for the body]
+filters:
+  - accordion
+---
+
+{{{< accordion [label] >}}}
+```
+
+### Minimal usage
+
+```yaml
+---
+accordion:
+  - simple:
+    - header: Click here to view contents
+      body: This is the body content
+filters:
+  - accordion
+---
+
+{{{< accordion simple >}}}
+```
+
+{{< accordion simple >}}
+
+### More accordion items
+
+```yaml
+---
+accordion:
+  - many-items:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+    - header: Item 3
+      body: This is the body content for item 3
+    - header: Item 4
+      body: This is the body content for item 4
+filters:
+  - accordion
+---
+
+{{{< accordion many-items >}}}
+```
+
+{{< accordion many-items >}}
+
+### Multiple accordions
+
+```yaml
+---
+accordion:
+  - ac-1:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+  - ac-2:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+filters:
+  - accordion
+---
+
+**Topic A**
+
+{{{< accordion ac-1 >}}}
+
+**Topic B**
+
+{{{< accordion ac-2 >}}}
+```
+
+**Topic A**
+
+{{< accordion ac-1 >}}
+
+**Topic B**
+
+{{< accordion ac-2 >}}
+
+### Collapse state
+
+All accordion items are collapsed as the default state. Any of the accordion items can be initialized as expanded by setting `collapsed: false`.
+
+```yaml
+---
+accordion:
+  - ac-3:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+      collapsed: false
+  - ac-4:
+    - header: Item 1
+      body: This is the body content for item 1
+      collapsed: false
+    - header: Item 2
+      body: This is the body content for item 2
+filters:
+  - accordion
+---
+
+{{{< accordion ac-3 >}}}
+
+{{{< accordion ac-4 >}}}
+```
+
+{{< accordion ac-3 >}}
+
+{{< accordion ac-4 >}}
+
+## Advanced
+### On Item IDs
+
+Accordion items are automatically given unique ids. This should generally work fine. In case of a conflict, IDs can be set manually using `id: my-id`.
+
+```yaml
+---
+accordion:
+  - id-conflict:
+    - header: Bla
+      body: bla
+    - header: Bla
+      body: bla
+  - id-conflict-resolved:
+    - header: Bla
+      body: bla
+    - header: Bla
+      body: bla
+      id: my-id
+filters:
+  - accordion
+---
+
+An example of accordion items with conflicting IDs
+
+{{{< accordion id-conflict >}}}
+
+Using custom ID to resolve conflict
+
+{{{< accordion id-conflict-resolved >}}}
+```
+
+An example of accordion items with conflicting IDs
+
+{{< accordion id-conflict >}}
+
+Using custom ID to resolve conflict
+
+{{< accordion id-conflict-resolved >}}
+
+### CSS styling
+
+To target all accordian sub components on a page, target the class `.quarto-accordion`.
+
+```css
+/*-- scss:rules --*/
+
+.quarto-accordion .accordion-header-content {
+  font-weight: 700;
+}
+```
+
+To target specific accordions, use the label of that accordion as id. For example an accordion labelled `css-styling`. Here is the qmd file.
+
+```yaml
+---
+accordion:
+  - css-styling:
+    - header: This header has style
+      body: This body has style
+format:
+  html:
+    css: styles.css
+filters:
+  - accordion
+---
+
+{{{< accordion css-styling >}}}
+```
+
+And here is the css file.
+
+```css
+/*-- scss:rules --*/
+
+#css-styling .quarto-accordion .accordion-header-content {
+  font-weight: 700;
+  color: red
+}
+
+#css-styling .quarto-accordion .accordion-body-content {
+  color: green;
+}
+```
+
+{{< accordion css-styling >}}
+
+## Limitations
+
+### Text formatting
+
+Text formatting in yaml metadata does not work.
+
+```yaml
+---
+accordion:
+  - simple-formatting:
+    - header: "**How much formatting can I have in an accordion?**"
+      body: "This is **bold** and *italic*"
+filters:
+  - accordion
+---
+
+{{{< accordion simple-formatting >}}}
+```
+
+{{< accordion simple-formatting >}}
+
+### Multiline content
+
+Multiline content and complex formatting in yaml metadata does not work.
+
+```yaml
+---
+accordion:
+  - complex-formatting:
+    - header: "**How much formatting can I have in an accordion?**" 
+      body: |
+        This is multiline yaml content.
+
+        This is **bold** and *italic*.
+        
+        This is an image link
+        
+        ![](https://images.pexels.com/photos/7604425/pexels-photo-7604425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)
+        
+        This is a markdown table.
+        
+        |Item|Category|
+        |Spools|Marketing|
+        |Cutters|Marketing|
+        |Pins|Logistics|
+filters:
+  - accordion
+---
+
+{{{< accordion complex-formatting >}}}
+```
+
+{{< accordion complex-formatting >}}
+
+### Other output formats
+
+The accordion content is simply ignored when the output format is anything other than `html`.

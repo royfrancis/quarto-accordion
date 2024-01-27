@@ -1,0 +1,10 @@
+/*-- scss:rules --*/
+
+#css-styling .quarto-accordion .accordion-header-content {
+  font-weight: 700;
+  color: red
+}
+
+#css-styling .quarto-accordion .accordion-body-content {
+  color: green;
+}
