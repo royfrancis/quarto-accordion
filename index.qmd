@@ -46,10 +46,10 @@ accordion:
   - css-styling:
     - header: This header has style
       body: This body has style
-  - simple-formatting:
+  - markdown-formatting:
     - header: "**How much formatting can I have in an accordion?**"
       body: "This is **bold** and *italic*"
-  - complex-formatting:
+  - multiline-markdown-formatting:
     - header: "**How much formatting can I have in an accordion?**" 
       body: |
         This is multiline yaml content.
@@ -63,10 +63,23 @@ accordion:
         This is a markdown table.
         
         |Item|Category|
+        |---|---|
         |Spools|Marketing|
         |Cutters|Marketing|
         |Pins|Logistics|
-      
+  - html-formatting:
+    - header: "<b>How much formatting can I have in an accordion?</b>"
+      body: "This is <b>bold</b> and <i>italic</i>"
+  - multiline-html-formatting:
+    - header: "<b>How does the accordion handle HTML?</b>" 
+      body: |
+        This is multiline yaml content.
+
+        This is <b>bold</b> and <i>italic</i>.
+        
+        This is an html image link
+        
+        <img src="https://images.pexels.com/photos/7604425/pexels-photo-7604425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Image" style="max-width: 100%; height: auto;" />
   - id-conflict:
     - header: Bla
       body: bla
@@ -314,33 +327,33 @@ And here is the css file.
 
 ## Limitations
 
-### Text formatting
+### Markdown formatting
 
-Text formatting in yaml metadata does not work.
+Markdown text formatting in yaml metadata does not work.
 
 ```yaml
 ---
 accordion:
-  - simple-formatting:
+  - markdown-formatting:
     - header: "**How much formatting can I have in an accordion?**"
       body: "This is **bold** and *italic*"
 filters:
   - accordion
 ---
 
-{{{< accordion simple-formatting >}}}
+{{{< accordion markdown-formatting >}}}
 ```
 
-{{< accordion simple-formatting >}}
+{{< accordion markdown-formatting >}}
 
-### Multiline content
+### Multiline markdown content
 
-Multiline content and complex formatting in yaml metadata does not work.
+Multiline content and markdown formatting in yaml metadata does not work.
 
 ```yaml
 ---
 accordion:
-  - complex-formatting:
+  - multiline-markdown-formatting:
     - header: "**How much formatting can I have in an accordion?**" 
       body: |
         This is multiline yaml content.
@@ -361,10 +374,55 @@ filters:
   - accordion
 ---
 
-{{{< accordion complex-formatting >}}}
+{{{< accordion multiline-markdown-formatting >}}}
 ```
 
-{{< accordion complex-formatting >}}
+{{< accordion multiline-markdown-formatting >}}
+
+### HTML formatting
+
+HTML content in yaml metadata does not work.
+
+```yaml
+---
+accordion:
+  - html-formatting:
+    - header: "<b>How much formatting can I have in an accordion?</b>"
+      body: "This is <b>bold</b> and <i>italic</i>"
+filters:
+  - accordion
+---
+
+{{{< accordion html-formatting >}}}
+```
+
+{{< accordion html-formatting >}}
+
+### Multiline HTML content
+
+```yaml
+---
+accordion:
+  - multiline-html-formatting:
+    - header: "<b>How does the accordion handle HTML?</b>" 
+      body: |
+        This is multiline yaml content.
+
+        This is <b>bold</b> and <i>italic</i>.
+        
+        This is an html image link
+        
+        <img src="https://images.pexels.com/photos/7604425/pexels-photo-7604425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Image" style="max-width: 100%; height: auto;" />
+        
+filters:
+  - accordion
+---
+
+{{{< accordion multiline-html-formatting >}}}
+```
+
+
+{{< accordion multiline-html-formatting >}}
 
 ### Other output formats
 
