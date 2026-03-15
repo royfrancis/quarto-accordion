@@ -1,0 +1,426 @@
+---
+title: "Test"
+subtitle: "Testing the accordion shortcode"
+author: "Roy Francis"
+date: last-modified
+date-format: DD-MMM-YYYY
+number-sections: true
+accordion:
+  - yaml-simple:
+    - header: Click here to view contents
+      body: This content is defined in the document yaml
+  - yaml-empty:
+  - yaml-missing-header:
+    - body: This item has no header
+  - yaml-missing-body:
+    - header: This item has no body
+  - yaml-missing-both:
+    - header: ""
+      body: ""
+  - yaml-many-items:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+    - header: Item 3
+    - header: Item 4
+      body: This is the body content for item 4
+  - yaml-collapsed:
+    - header: This is collapsed (default)
+      body: Collapsed body content
+    - header: This is expanded
+      body: Expanded body content
+      collapsed: false
+  - yaml-custom-id:
+    - header: Item with custom id
+      body: Custom id body
+      id: my-custom-id
+  - yaml-id-conflict:
+    - header: Duplicate
+      body: duplicate
+    - header: Duplicate
+      body: duplicate
+  - yaml-markdown:
+    - header: "**Bold header**"
+      body: "This is **bold** and *italic*"
+  - yaml-multiline-markdown:
+    - header: "**Multiline markdown header**"
+      body: |
+        This is multiline content.
+
+        This is **bold** and *italic*.
+
+        - List item 1
+        - List item 2
+
+        | Col1 | Col2 |
+        |------|------|
+        | A    | B    |
+  - yaml-html:
+    - header: "<b>HTML bold header</b>"
+      body: "This is <b>bold</b> and <i>italic</i>"
+  - yaml-multiline-html:
+    - header: "<b>Multiline HTML header</b>"
+      body: |
+        <p>This is a paragraph.</p>
+
+        <ul>
+        <li>HTML list item 1</li>
+        <li>HTML list item 2</li>
+        </ul>
+format:
+  html:
+    toc: true
+    title-block-banner: true
+    code-overflow: wrap
+  pdf:
+    output-file: test-latex.pdf
+    toc: true
+    title-block-banner: true
+    code-overflow: wrap
+  typst:
+    output-file: test-typst.pdf
+    toc: true
+    title-block-banner: true
+    code-overflow: wrap
+  docx:
+    output-file: test.docx
+    toc: true
+  gfm:
+    output-file: test.md
+  epub:
+    output-file: test.epub
+    toc: true
+filters:
+  - accordion
+---
+
+# Error tests
+
+These tests should each produce an error message.
+
+## No arguments
+
+Expected error: No arguments provided.
+
+```lua
+{{{< accordion >}}}
+```
+
+{{< accordion >}}
+
+## Both positional and label kwargs
+
+Expected error: Use either a positional argument or named arguments (label), not both.
+
+```lua
+{{{< accordion yaml-simple label="mixed" header="This is a header" body="This is body content" >}}}
+```
+
+{{< accordion yaml-simple label="mixed" header="This is a header" body="This is body content" >}}
+
+## Invalid label - space
+
+Expected error: Label contains invalid characters.
+
+```lua
+{{{< accordion label="inline simple" header="Header" body="Body" >}}}
+```
+
+{{< accordion label="inline simple" header="Header" body="Body" >}}
+
+## Invalid label - special characters
+
+Expected error: Label contains invalid characters.
+
+```lua
+{{{< accordion label="inline?simple" header="Header" body="Body" >}}}
+```
+
+{{< accordion label="inline?simple" header="Header" body="Body" >}}
+
+## YAML label not found in metadata
+
+Expected error: Accordion entry not found in yaml metadata.
+
+```lua
+{{{< accordion nonexistent >}}}
+```
+
+{{< accordion nonexistent >}}
+
+## YAML empty metadata for label
+
+Expected error: Missing 'header' and 'body'.
+
+```lua
+{{{< accordion yaml-empty >}}}
+```
+
+{{< accordion yaml-empty >}}
+
+## YAML item missing header
+
+Expected error: Item 1 is missing 'header'.
+
+```lua
+{{{< accordion yaml-missing-header >}}}
+```
+
+{{< accordion yaml-missing-header >}}
+
+## YAML item missing body
+
+Expected error: Item 1 is missing 'body'.
+
+```lua
+{{{< accordion yaml-missing-body >}}}
+```
+
+{{< accordion yaml-missing-body >}}
+
+## YAML item missing both header and body
+
+Expected error: Item 1 is missing 'header' and 'body'.
+
+```lua
+{{{< accordion yaml-missing-both >}}}
+```
+
+{{< accordion yaml-missing-both >}}
+
+## YAML multiple items with partial missing
+
+Expected error: Item 3 is missing 'body' (items 1, 2, 4 should render).
+
+```lua
+{{{< accordion yaml-many-items >}}}
+```
+
+{{< accordion yaml-many-items >}}
+
+## Inline label only - no header/body/items
+
+Expected error: 'label' kwarg specified without 'header'/'body' or 'items' kwargs.
+
+```lua
+{{{< accordion label="inline-empty" >}}}
+```
+
+{{< accordion label="inline-empty" >}}
+
+## Inline missing body
+
+Expected error: 'body' kwarg is missing.
+
+```lua
+{{{< accordion label="inline-missing-body" header="Click here to view contents" >}}}
+```
+
+{{< accordion label="inline-missing-body" header="Click here to view contents" >}}
+
+## Inline missing header
+
+Expected error: 'header' kwarg is missing.
+
+```lua
+{{{< accordion label="inline-missing-header" body="This content is defined inline" >}}}
+```
+
+{{< accordion label="inline-missing-header" body="This content is defined inline" >}}
+
+## Inline header/body mixed with items
+
+Expected error: Use either 'header'/'body' or 'items', not both.
+
+```lua
+{{{< accordion label="inline-mixed" header="Header" body="Body" items='[{"header":"H","body":"B"}]' >}}}
+```
+
+{{< accordion label="inline-mixed" header="Header" body="Body" items='[{"header":"H","body":"B"}]' >}}
+
+## Inline bad JSON in items
+
+Expected error: Missing 'header' and 'body'.
+
+```lua
+{{{< accordion label="inline-bad-json" items='not valid json' >}}}
+```
+
+{{< accordion label="inline-bad-json" items='not valid json' >}}
+
+## Inline JSON item missing header
+
+Expected error: Item 2 is missing 'header'.
+
+```lua
+{{{< accordion label="inline-json-no-header" items='[{"header":"Item 1","body":"Body 1"},{"body":"Body 2"}]' >}}}
+```
+
+{{< accordion label="inline-json-no-header" items='[{"header":"Item 1","body":"Body 1"},{"body":"Body 2"}]' >}}
+
+## Inline JSON item missing body
+
+Expected error: Item 1 is missing 'body'.
+
+```lua
+{{{< accordion label="inline-json-no-body" items='[{"header":"Item 1"},{"header":"Item 2","body":"Body 2"}]' >}}}
+```
+
+{{< accordion label="inline-json-no-body" items='[{"header":"Item 1"},{"header":"Item 2","body":"Body 2"}]' >}}
+
+# Success tests
+
+These tests should each render a working accordion.
+
+## YAML simple single item
+
+```lua
+{{{< accordion yaml-simple >}}}
+```
+
+{{< accordion yaml-simple >}}
+
+## YAML same label reused
+
+```lua
+{{{< accordion yaml-simple >}}}
+```
+
+{{< accordion yaml-simple >}}
+
+## YAML collapsed state
+
+```lua
+{{{< accordion yaml-collapsed >}}}
+```
+
+{{< accordion yaml-collapsed >}}
+
+## YAML custom id
+
+```lua
+{{{< accordion yaml-custom-id >}}}
+```
+
+{{< accordion yaml-custom-id >}}
+
+## YAML id conflict
+
+```lua
+{{{< accordion yaml-id-conflict >}}}
+```
+
+{{< accordion yaml-id-conflict >}}
+
+## YAML markdown formatting
+
+```lua
+{{{< accordion yaml-markdown >}}}
+```
+
+{{< accordion yaml-markdown >}}
+
+## YAML multiline markdown
+
+```lua
+{{{< accordion yaml-multiline-markdown >}}}
+```
+
+{{< accordion yaml-multiline-markdown >}}
+
+## YAML HTML formatting
+
+```lua
+{{{< accordion yaml-html >}}}
+```
+
+{{< accordion yaml-html >}}
+
+## YAML multiline HTML
+
+```lua
+{{{< accordion yaml-multiline-html >}}}
+```
+
+{{< accordion yaml-multiline-html >}}
+
+## Inline simple
+
+```lua
+{{{< accordion label="inline-simple" header="Click here to view contents" body="This content is defined inline" >}}}
+```
+
+{{< accordion label="inline-simple" header="Click here to view contents" body="This content is defined inline" >}}
+
+## Inline double quoted hyphenated label
+
+```lua
+{{{< accordion label="\"my-accordion\"" header="Click to expand" body="This is the content of the accordion." >}}}
+```
+
+{{< accordion label="my-accordion" header="Click to expand" body="This is the content of the accordion." >}}
+
+## Inline collapsed false
+
+```lua
+{{{< accordion label="inline-expanded" header="This starts expanded" body="Expanded content by default." collapsed="false" >}}}
+```
+
+{{< accordion label="inline-expanded" header="This starts expanded" body="Expanded content by default." collapsed="false" >}}
+
+## Inline with custom id
+
+```lua
+{{{< accordion label="inline-custom-id" header="Custom item id" body="Custom ids are useful when you need anchor links." id="custom-item-1" >}}}
+```
+
+{{< accordion label="inline-custom-id" header="Custom item id" body="Custom ids are useful when you need anchor links." id="custom-item-1" >}}
+
+## Inline multi items via JSON
+
+```lua
+{{{< accordion label="inline-multi" items='[{"header":"Inline Item 1","body":"Content for item 1."},{"header":"Inline Item 2","body":"Content for item 2.","collapsed":false}]' >}}}
+```
+
+{{< accordion label="inline-multi" items='[{"header":"Inline Item 1","body":"Content for item 1."},{"header":"Inline Item 2","body":"Content for item 2.","collapsed":false}]' >}}
+
+## Inline multi with custom id via JSON
+
+```lua
+{{{< accordion label="inline-multi-id" items='[{"header":"Item A","body":"Body A","id":"item-a"},{"header":"Item B","body":"Body B"}]' >}}}
+```
+
+{{< accordion label="inline-multi-id" items='[{"header":"Item A","body":"Body A","id":"item-a"},{"header":"Item B","body":"Body B"}]' >}}
+
+## Inline markdown formatting
+
+```lua
+{{{< accordion label="inline-md" header="**Bold header**" body="This is **bold** and *italic*" >}}}
+```
+
+{{< accordion label="inline-md" header="**Bold header**" body="This is **bold** and *italic*" >}}
+
+## Inline HTML formatting
+
+```lua
+{{{< accordion label="inline-html" header="<b>HTML bold header</b>" body="This is <b>bold</b> and <i>italic</i>" >}}}
+```
+
+{{< accordion label="inline-html" header="<b>HTML bold header</b>" body="This is <b>bold</b> and <i>italic</i>" >}}
+
+## Inline JSON items with markdown
+
+```lua
+{{{< accordion label="inline-json-md" items='[{"header":"**Bold JSON header**","body":"This is **bold** and *italic*."},{"header":"Second item","body":"- List item 1\n- List item 2"}]' >}}}
+```
+
+{{< accordion label="inline-json-md" items='[{"header":"**Bold JSON header**","body":"This is **bold** and *italic*."},{"header":"Second item","body":"- List item 1\n- List item 2"}]' >}}
+
+## Inline JSON items with HTML
+
+```lua
+{{{< accordion label="inline-json-html" items='[{"header":"<b>HTML JSON header</b>","body":"This is <b>bold</b> and <i>italic</i>."},{"header":"Second item","body":"<ul><li>Item 1</li><li>Item 2</li></ul>"}]' >}}}
+```
+
+{{< accordion label="inline-json-html" items='[{"header":"<b>HTML JSON header</b>","body":"This is <b>bold</b> and <i>italic</i>."},{"header":"Second item","body":"<ul><li>Item 1</li><li>Item 2</li></ul>"}]' >}}

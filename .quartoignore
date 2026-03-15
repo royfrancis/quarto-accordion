@@ -8,5 +8,7 @@ LICENSE
 preview.jpg
 _quarto.yml
 index.qmd
-index.html
-styles.css
+usage.qmd
+test.qmd
+revealjs.qmd
+styles.scss

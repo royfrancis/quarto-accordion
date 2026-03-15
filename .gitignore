@@ -1,2 +1,13 @@
 *.pdf
 .DS_Store
+*.html
+*_files
+*.tex
+*.log
+*.aux
+*.toc
+to-do.txt
+/.quarto/
+**/*.quarto_ipynb
+
+/.luarc.json

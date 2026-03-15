@@ -1,0 +1,221 @@
+---
+title: "Accordion Revealjs Test"
+subtitle: "Testing the accordion shortcode in revealjs"
+author: "Roy Francis"
+date: last-modified
+date-format: DD-MMM-YYYY
+accordion:
+  - yaml-simple:
+    - header: Click here to view contents
+      body: This content is defined in the document yaml
+  - yaml-many-items:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+    - header: Item 3
+      body: This is the body content for item 3
+  - yaml-collapsed:
+    - header: This is collapsed (default)
+      body: Collapsed body content
+    - header: This is expanded
+      body: Expanded body content
+      collapsed: false
+  - yaml-custom-id:
+    - header: Item with custom id
+      body: Custom id body
+      id: revealjs-custom-id
+  - yaml-markdown:
+    - header: "**Bold header**"
+      body: "This is **bold** and *italic*"
+  - yaml-multiline-markdown:
+    - header: "**Multiline markdown**"
+      body: |
+        This is multiline content.
+
+        This is **bold** and *italic*.
+
+        - List item 1
+        - List item 2
+  - yaml-empty:
+  - yaml-missing-header:
+    - body: This item has no header
+  - yaml-missing-body:
+    - header: This item has no body
+format:
+  revealjs:
+    smaller: true
+    scrollable: true
+filters:
+  - accordion
+---
+
+## S1: YAML simple single item
+
+```lua
+{{{< accordion yaml-simple >}}}
+```
+
+{{< accordion yaml-simple >}}
+
+## S2: YAML multiple items
+
+```lua
+{{{< accordion yaml-many-items >}}}
+```
+
+{{< accordion yaml-many-items >}}
+
+## S3: YAML collapsed state
+
+First item collapsed (default), second item expanded.
+
+```lua
+{{{< accordion yaml-collapsed >}}}
+```
+
+{{< accordion yaml-collapsed >}}
+
+## S4: YAML custom id
+
+```lua
+{{{< accordion yaml-custom-id >}}}
+```
+
+{{< accordion yaml-custom-id >}}
+
+## S5: YAML markdown formatting
+
+```lua
+{{{< accordion yaml-markdown >}}}
+```
+
+{{< accordion yaml-markdown >}}
+
+## S6: YAML multiline markdown
+
+```lua
+{{{< accordion yaml-multiline-markdown >}}}
+```
+
+{{< accordion yaml-multiline-markdown >}}
+
+## S7: Inline simple
+
+```lua
+{{{< accordion label="inline-simple" header="Click to expand" body="This content is defined inline." >}}}
+```
+
+{{< accordion label="inline-simple" header="Click to expand" body="This content is defined inline." >}}
+
+## S8: Inline collapsed false
+
+```lua
+{{{< accordion label="inline-expanded" header="This starts expanded" body="Expanded content by default." collapsed="false" >}}}
+```
+
+{{< accordion label="inline-expanded" header="This starts expanded" body="Expanded content by default." collapsed="false" >}}
+
+## S9: Inline with custom id
+
+```lua
+{{{< accordion label="inline-custom-id" header="Custom item id" body="Custom ids are useful for anchor links." id="custom-item-revealjs" >}}}
+```
+
+{{< accordion label="inline-custom-id" header="Custom item id" body="Custom ids are useful for anchor links." id="custom-item-revealjs" >}}
+
+## S10: Inline multi items via JSON
+
+```lua
+{{{< accordion label="inline-multi" items='[{"header":"Inline Item 1","body":"Content for item 1."},{"header":"Inline Item 2","body":"Content for item 2.","collapsed":false}]' >}}}
+```
+
+{{< accordion label="inline-multi" items='[{"header":"Inline Item 1","body":"Content for item 1."},{"header":"Inline Item 2","body":"Content for item 2.","collapsed":false}]' >}}
+
+## S11: Inline markdown formatting
+
+```lua
+{{{< accordion label="inline-md" header="**Bold header**" body="This is **bold** and *italic*" >}}}
+```
+
+{{< accordion label="inline-md" header="**Bold header**" body="This is **bold** and *italic*" >}}
+
+## S12: Multiple accordions on one slide
+
+{{< accordion label="slide-acc-1" header="First accordion" body="Body of first accordion on this slide." >}}
+
+{{< accordion label="slide-acc-2" header="Second accordion" body="Body of second accordion on this slide." >}}
+
+{{< accordion label="slide-acc-3" header="Third accordion" body="Body of third accordion on this slide." >}}
+
+## E1: No arguments
+
+```lua
+{{{< accordion >}}}
+```
+
+{{< accordion >}}
+
+## E2: Both positional and label kwargs
+
+```lua
+{{{< accordion yaml-simple label="mixed" header="Header" body="Body" >}}}
+```
+
+{{< accordion yaml-simple label="mixed" header="Header" body="Body" >}}
+
+## E3: Invalid label
+
+```lua
+{{{< accordion label="invalid label" header="Header" body="Body" >}}}
+```
+
+{{< accordion label="invalid label" header="Header" body="Body" >}}
+
+## E4: YAML label not found
+
+```lua
+{{{< accordion nonexistent >}}}
+```
+
+{{< accordion nonexistent >}}
+
+## E5: YAML empty metadata
+
+```lua
+{{{< accordion yaml-empty >}}}
+```
+
+{{< accordion yaml-empty >}}
+
+## E6: YAML missing header
+
+```lua
+{{{< accordion yaml-missing-header >}}}
+```
+
+{{< accordion yaml-missing-header >}}
+
+## E7: YAML missing body
+
+```lua
+{{{< accordion yaml-missing-body >}}}
+```
+
+{{< accordion yaml-missing-body >}}
+
+## E8: Inline missing body
+
+```lua
+{{{< accordion label="inline-no-body" header="Header only" >}}}
+```
+
+{{< accordion label="inline-no-body" header="Header only" >}}
+
+## E9: Inline missing header
+
+```lua
+{{{< accordion label="inline-no-header" body="Body only" >}}}
+```
+
+{{< accordion label="inline-no-header" body="Body only" >}}

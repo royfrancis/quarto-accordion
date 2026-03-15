@@ -1,0 +1,496 @@
+---
+title: "Accordion"
+subtitle: "Bootstrap accordion component for Quarto"
+author: "Roy Francis"
+date: last-modified
+date-format: DD-MMM-YYYY
+accordion:
+  - simple:
+    - header: Click here to view contents
+      body: This content is defined in the document yaml
+  - many-items:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+    - header: Item 3
+      body: This is the body content for item 3
+    - header: Item 4
+      body: This is the body content for item 4
+  - ac-1:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+  - ac-2:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+  - ac-3:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+      collapsed: false
+  - ac-4:
+    - header: Item 1
+      body: This is the body content for item 1
+      collapsed: false
+    - header: Item 2
+      body: This is the body content for item 2
+  - custom-css:
+    - header: This header has style
+      body: This body has style
+  - markdown-formatting:
+    - header: "**How much markdown formatting can I have in an accordion?**"
+      body: "This is **bold** and *italic*"
+  - multiline-markdown-formatting:
+    - header: "**How much markdown formatting can I have in an accordion?**" 
+      body: |
+        This is multiline yaml content.
+
+        This is **bold** and *italic*. This is a [URL](https://quarto.org).
+        
+        This is a markdown image
+        
+        ![](preview.jpg)
+        
+        This is a markdown table.
+        
+        |Item|Category|
+        |---|---|
+        |Spools|Marketing|
+        |Cutters|Marketing|
+        |Pins|Logistics|
+  - html-formatting:
+    - header: "<b>How much HTML formatting can I have in an accordion?</b>"
+      body: "This is <b>bold</b> and <i>italic</i>"
+  - multiline-html-formatting:
+    - header: "<b>How does the accordion handle HTML?</b>" 
+      body: |
+        This is multiline yaml content.
+
+        This is <b>bold</b> and <i>italic</i>. This is a <a href="https://quarto.org">URL</a>.
+        
+        This is an html image
+        
+        <img src="preview.jpg" alt="Image" style="max-width: 100%; height: auto;" />
+  - id-conflict:
+    - header: Bla
+      body: bla
+    - header: Bla
+      body: bla
+  - id-conflict-resolved:
+    - header: Bla
+      body: bla
+    - header: Bla
+      body: bla
+      id: my-id
+format:
+  html:
+    css: styles.scss
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    title-block-banner: true
+    code-overflow: wrap
+  pdf:
+    output-file: usage-latex.pdf
+    toc: true
+    number-sections: true
+    title-block-banner: true
+    code-overflow: wrap
+  typst:
+    output-file: usage-typst.pdf
+    toc: true
+    number-sections: true
+    title-block-banner: true
+    code-overflow: wrap
+filters:
+  - accordion
+---
+
+A quarto shortcode extension to add [Bootstrap accordion component](https://getbootstrap.com/docs/5.1/components/accordion/) for **html** and **revealjs** formats. Minimal non-interactive fallbacks are provided for other output formats **pdf** and **typst**.
+
+## Install
+
+- Requires Quarto >= 1.4.0  
+- In the root of the quarto project, run in terminal:  
+
+```bash
+quarto add royfrancis/quarto-accordion
+```
+
+This will install the extension under the `_extensions` subdirectory.
+
+## Syntax
+
+- Add `accordion` to filters  
+- Define accordion contents (header, body)
+- Insert shortcode in the quarto document  
+
+Here is the syntax where `[text]` is replaced as needed.
+
+```yaml
+---
+accordion:
+  - [label]:
+    - header: [text content for the header]
+      body: [text content for the body]
+      collapsed: [true/false, optional, defaults to true]
+      id: [text, optional, defaults to auto-generated]
+filters:
+  - accordion
+---
+
+{{{< accordion [label] >}}}
+```
+
+In this example, the arguments were defined in the YAML metadata. Arguments can also be defined directly in the shortcode. This is referred to as 'Inline'. The `label` becomes the accordion id, while `header`, `body`, `collapsed` and `id` control the item content.
+
+```lua
+{{{< accordion label="[label]" header="[text content for the header]" body="[text content for the body]" collapsed="[true/false, optional, defaults to true]" id="[text, optional, defaults to auto-generated]" >}}}
+```
+
+You can also mix and match these approaches in the same document as is the case in this document.
+
+::: {.callout-warning}
+Only use alphabets, numbers, hyphens and underscores in the label.
+:::
+
+## Minimal usage
+### YAML metadata
+
+```yaml
+---
+accordion:
+  - simple:
+    - header: Click here to view contents
+      body: This is the body content
+filters:
+  - accordion
+---
+
+{{{< accordion simple >}}}
+```
+
+{{< accordion simple >}}
+
+### Inline content
+
+```lua
+{{{< accordion label="simple-inline" header="Click here to view contents" body="This accordion is defined inline." >}}}
+```
+
+{{< accordion label="simple-inline" header="Click here to view contents" body="This accordion is defined inline." >}}
+
+## More accordion items
+### YAML metadata
+
+```yaml
+---
+accordion:
+  - many-items:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+    - header: Item 3
+      body: This is the body content for item 3
+    - header: Item 4
+      body: This is the body content for item 4
+filters:
+  - accordion
+---
+
+{{{< accordion many-items >}}}
+```
+
+{{< accordion many-items >}}
+
+### Inline content
+
+Multiple inline items are defined using JSON.
+
+```lua
+{{{< accordion label="inline-multi" items='[{"header":"Inline Item 1","body":"Content for inline item 1."},{"header":"Inline Item 2","body":"Content for inline item 2."}]' >}}}
+```
+
+{{< accordion label="inline-multi" items='[{"header":"Inline Item 1","body":"Content for inline item 1."},{"header":"Inline Item 2","body":"Content for inline item 2."}]' >}}
+
+## Multiple accordions
+
+```yaml
+---
+accordion:
+  - ac-1:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+  - ac-2:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+filters:
+  - accordion
+---
+
+**Topic A**
+
+{{{< accordion ac-1 >}}}
+
+**Topic B**
+
+{{{< accordion ac-2 >}}}
+```
+
+**Topic A**
+
+{{< accordion ac-1 >}}
+
+**Topic B**
+
+{{< accordion ac-2 >}}
+
+## Collapse state
+
+All accordion items are collapsed as the default state. Any of the accordion items can be initialized as expanded by setting `collapsed` as `false`.
+
+### YAML metadata
+
+```yaml
+---
+accordion:
+  - ac-3:
+    - header: Item 1
+      body: This is the body content for item 1
+    - header: Item 2
+      body: This is the body content for item 2
+      collapsed: false
+  - ac-4:
+    - header: Item 1
+      body: This is the body content for item 1
+      collapsed: false
+    - header: Item 2
+      body: This is the body content for item 2
+filters:
+  - accordion
+---
+
+{{{< accordion ac-3 >}}}
+
+{{{< accordion ac-4 >}}}
+```
+
+{{< accordion ac-3 >}}
+
+{{< accordion ac-4 >}}
+
+### Inline content
+
+```lua
+{{{< accordion label="inline-expanded" header="This item starts expanded" body="Set collapsed to false to show content by default." collapsed="false" >}}}
+```
+
+{{< accordion label="inline-expanded" header="This item starts expanded" body="Set collapsed to false to show content by default." collapsed="false" >}}
+
+## Item IDs
+
+Accordion items are automatically given unique ids. This should generally work fine. In case of a conflict, IDs can be set manually using `id`.
+
+### YAML metadata
+
+```yaml
+---
+accordion:
+  - id-conflict:
+    - header: Bla
+      body: bla
+    - header: Bla
+      body: bla
+  - id-conflict-resolved:
+    - header: Bla
+      body: bla
+    - header: Bla
+      body: bla
+      id: my-id
+filters:
+  - accordion
+---
+
+An example of accordion items with conflicting IDs where two accordion items have the same ids and hence open/close together.
+
+{{{< accordion id-conflict >}}}
+
+Using custom ID to resolve conflict and now they work independently.
+
+{{{< accordion id-conflict-resolved >}}}
+```
+
+An example of accordion items with conflicting IDs where two accordion items have the same ids and hence open/close together.
+
+{{< accordion id-conflict >}}
+
+Using custom ID to resolve conflict and now they work independently.
+
+{{< accordion id-conflict-resolved >}}
+
+### Inline content
+
+```lua
+{{{< accordion label="inline-custom-id" header="Custom item id" body="Custom ids are useful when you need anchor links." id="custom-item-1" >}}}
+```
+
+{{< accordion label="inline-custom-id" header="Custom item id" body="Custom ids are useful when you need anchor links." id="custom-item-1" >}}
+
+## CSS styling
+
+To target all accordian sub components on a page, target the class `.quarto-accordion`.
+
+```css
+/*-- scss:rules --*/
+
+.quarto-accordion .accordion-header-content {
+  font-weight: 700;
+}
+```
+
+To target specific accordions, use the label of that accordion as id. For example an accordion labelled `custom-css`. Here is the qmd file.
+
+```yaml
+---
+accordion:
+  - custom-css:
+    - header: This header has style
+      body: This body has style
+format:
+  html:
+    css: styles.scss
+filters:
+  - accordion
+---
+
+{{{< accordion custom-css >}}}
+```
+
+And here is the css file.
+
+```css
+/*-- scss:rules --*/
+
+#quarto-accordion-custom-css .accordion-header-content {
+  font-weight: 700;
+  color: red
+}
+
+#quarto-accordion-custom-css .accordion-body-content {
+  color: green;
+}
+```
+
+{{< accordion custom-css >}}
+
+## Markdown formatting
+
+Markdown text formatting is supported in yaml metadata.
+
+```yaml
+---
+accordion:
+  - markdown-formatting:
+    - header: "**How much markdown formatting can I have in an accordion?**"
+      body: "This is **bold** and *italic*"
+filters:
+  - accordion
+---
+
+{{{< accordion markdown-formatting >}}}
+```
+
+{{< accordion markdown-formatting >}}
+
+Multiline content and markdown formatting is supported in yaml metadata.
+
+```yaml
+---
+accordion:
+  - multiline-markdown-formatting:
+    - header: "**How much markdown formatting can I have in an accordion?**" 
+      body: |
+        This is multiline yaml content.
+
+        This is **bold** and *italic*. This is a [URL](https://quarto.org).
+        
+        This is a markdown image
+        
+        ![](preview.jpg)
+        
+        This is a markdown table.
+        
+        |Item|Category|
+        |Spools|Marketing|
+        |Cutters|Marketing|
+        |Pins|Logistics|
+filters:
+  - accordion
+---
+
+{{{< accordion multiline-markdown-formatting >}}}
+```
+
+{{< accordion multiline-markdown-formatting >}}
+
+::: {.content-visible when-format="html"}
+
+## HTML formatting
+
+HTML content in yaml metadata is supported.
+
+```yaml
+---
+accordion:
+  - html-formatting:
+    - header: "<b>How much HTML formatting can I have in an accordion?</b>"
+      body: "This is <b>bold</b> and <i>italic</i>"
+filters:
+  - accordion
+---
+
+{{{< accordion html-formatting >}}}
+```
+
+{{< accordion html-formatting >}}
+
+Multiline HTML content is supported in yaml metadata.
+
+```yaml
+---
+accordion:
+  - multiline-html-formatting:
+    - header: "<b>How does the accordion handle HTML?</b>" 
+      body: |
+        This is multiline yaml content.
+
+        This is <b>bold</b> and <i>italic</i>. This is a <a href="https://quarto.org">URL</a>.
+        
+        This is an html image
+        
+        <img src="preview.jpg" alt="Image" style="max-width: 100%; height: auto;" />
+        
+filters:
+  - accordion
+---
+
+{{{< accordion multiline-html-formatting >}}}
+```
+
+{{< accordion multiline-html-formatting >}}
+
+:::
+
+## Other formats
+
+The accordion shortcode is designed for **html** output. For formats **pdf** and **typst**, the accordion component degrades gracefully to show all content without interactivity. Markdown formatting is supported in these formats but HTML formatting is not. Accordions also work in **revealjs** presentation format.

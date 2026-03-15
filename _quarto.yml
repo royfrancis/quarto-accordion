@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: docs
+
+
+website:
+  title: "Accordion"
+  site-url: "https://royfrancis.github.io/quarto-accordion/"
+  description: "A quarto extension to add bootstrap accordion component"
+  navbar:
+    left:
+      - text: "Home"
+        href: "index.html"
+        aria-label: "Home"
+      - text: "Usage"
+        href: "usage.html"
+        aria-label: "Usage"
+      - text: "Presentation"
+        href: "revealjs.html"
+        aria-label: "RevealJS Presentation"
+      - text: "Test"
+        href: "test.html"
+        aria-label: "Test"
+    right:
+      - icon: github
+        aria-label: "GitHub"
+        href: https://github.com/royfrancis/quarto-accordion
+  page-footer:
+    border: false
+    left: "{{< meta current_year >}} Roy Francis • [MIT License](https://choosealicense.com/licenses/mit/)"
+    right: "Published with [Quarto](https://quarto.org/) v{{< meta quarto_version >}}"
+
+filters:
+  - custom.lua
