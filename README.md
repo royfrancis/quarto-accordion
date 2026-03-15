@@ -4,6 +4,15 @@ A quarto shortcode extension to add [Bootstrap accordion component](https://getb
 
 ![](preview.jpg)
 
+## Latest updates
+
+- v1.1.0
+- Accordion content can now be defined inline in the shortcode arguments. This is in addition to the existing approach of defining content in the YAML metadata.
+- Markdown and HTML formatting is supported in accordion content
+- Support for additional output formats such as pdf, typst and revealjs
+- Plain content fallback for unsupported formats
+- More documentation and testing
+
 ## Install
 
 - Requires Quarto >= 1.4.0
@@ -14,15 +23,6 @@ quarto add royfrancis/quarto-accordion
 ```
 
 This will install the extension under the `_extensions` subdirectory.
-
-## Latest updates
-
-- v1.1.0
-- Accordion content can now be defined inline in the shortcode arguments. This is in addition to the existing approach of defining content in the YAML metadata.
-- Markdown and HTML formatting is supported in accordion content
-- Support for additional output formats such as pdf, typst and revealjs
-- Plain content fallback for unsupported formats
-- More documentation and testing
 
 ## Usage
 
