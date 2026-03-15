@@ -6,8 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Roy Francis">
-<meta name="description" content="A quarto shortcode extension to add Bootstrap accordion component for html format">
 
 <title>Accordion</title>
 <style>
@@ -22,663 +20,217 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="index_files/libs/clipboard/clipboard.min.js"></script>
-<script src="index_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="index_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="index_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="index_files/libs/quarto-html/popper.min.js"></script>
-<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="index_files/libs/quarto-html/anchor.min.js"></script>
-<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="index_files/libs/quarto-contrib/accordion/accordion.css" rel="stylesheet">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ff63373b1067ca6f91cf1456aa1f00a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/accordion/accordion.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Accordion</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./usage.html"> 
+<span class="menu-text">Usage</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./revealjs.html"> 
+<span class="menu-text">Presentation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./test.html"> 
+<span class="menu-text">Test</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/royfrancis/quarto-accordion"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Accordion</h1>
-            <p class="subtitle lead">Bootstrap accordion component for Quarto</p>
-                  <div>
-        <div class="description">
-          A quarto shortcode extension to add <a href="https://getbootstrap.com/docs/5.1/components/accordion/">Bootstrap accordion component</a> for html format
-        </div>
-      </div>
-                </div>
+            <p class="subtitle lead">A quarto shortcode extension to add Bootstrap accordion component</p>
+                      </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Roy Francis </p>
-            </div>
-    </div>
       
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">16-Nov-2025</p>
-      </div>
-    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install"><span class="header-section-number">1</span> Install</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage"><span class="header-section-number">2</span> Usage</a>
-  <ul class="collapse">
-  <li><a href="#minimal-usage" id="toc-minimal-usage" class="nav-link" data-scroll-target="#minimal-usage"><span class="header-section-number">2.1</span> Minimal usage</a></li>
-  <li><a href="#more-accordion-items" id="toc-more-accordion-items" class="nav-link" data-scroll-target="#more-accordion-items"><span class="header-section-number">2.2</span> More accordion items</a></li>
-  <li><a href="#multiple-accordions" id="toc-multiple-accordions" class="nav-link" data-scroll-target="#multiple-accordions"><span class="header-section-number">2.3</span> Multiple accordions</a></li>
-  <li><a href="#collapse-state" id="toc-collapse-state" class="nav-link" data-scroll-target="#collapse-state"><span class="header-section-number">2.4</span> Collapse state</a></li>
-  </ul></li>
-  <li><a href="#advanced" id="toc-advanced" class="nav-link" data-scroll-target="#advanced"><span class="header-section-number">3</span> Advanced</a>
-  <ul class="collapse">
-  <li><a href="#on-item-ids" id="toc-on-item-ids" class="nav-link" data-scroll-target="#on-item-ids"><span class="header-section-number">3.1</span> On Item IDs</a></li>
-  <li><a href="#css-styling" id="toc-css-styling" class="nav-link" data-scroll-target="#css-styling"><span class="header-section-number">3.2</span> CSS styling</a></li>
-  </ul></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">4</span> Limitations</a>
-  <ul class="collapse">
-  <li><a href="#markdown-formatting" id="toc-markdown-formatting" class="nav-link" data-scroll-target="#markdown-formatting"><span class="header-section-number">4.1</span> Markdown formatting</a></li>
-  <li><a href="#multiline-markdown-content" id="toc-multiline-markdown-content" class="nav-link" data-scroll-target="#multiline-markdown-content"><span class="header-section-number">4.2</span> Multiline markdown content</a></li>
-  <li><a href="#html-formatting" id="toc-html-formatting" class="nav-link" data-scroll-target="#html-formatting"><span class="header-section-number">4.3</span> HTML formatting</a></li>
-  <li><a href="#multiline-html-content" id="toc-multiline-html-content" class="nav-link" data-scroll-target="#multiline-html-content"><span class="header-section-number">4.4</span> Multiline HTML content</a></li>
-  <li><a href="#other-output-formats" id="toc-other-output-formats" class="nav-link" data-scroll-target="#other-output-formats"><span class="header-section-number">4.5</span> Other output formats</a></li>
-  </ul></li>
-  </ul>
-</nav>
-</div>
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<section id="install" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="install"><span class="header-section-number">1</span> Install</h2>
+<p>A quarto shortcode extension to add <a href="https://getbootstrap.com/docs/5.1/components/accordion/">Bootstrap accordion component</a> for <strong>html</strong> and <strong>revealjs</strong> formats. Minimal non-interactive fallbacks are provided for other output formats <strong>pdf</strong> and <strong>typst</strong>.</p>
+<div id="quarto-accordion-ac" class="accordion quarto-accordion">
+<div class="accordion-item">
+<div class="accordion-header" id="heading-quarto-accordion-ac-item1foritem1">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-quarto-accordion-ac-item1foritem1" aria-expanded="false" aria-controls="collapse-quarto-accordion-ac-item1foritem1">
+<div class="accordion-header-content">
+Item 1
+</div>
+</button>
+</div>
+<div id="collapse-quarto-accordion-ac-item1foritem1" class="accordion-collapse collapse" aria-labelledby="heading-quarto-accordion-ac-item1foritem1" data-bs-parent="#quarto-accordion-ac">
+<div class="accordion-body">
+<div class="accordion-body-content">
+This is the body content for item 1
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<div class="accordion-header" id="heading-quarto-accordion-ac-item2foritem2">
+<button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-quarto-accordion-ac-item2foritem2" aria-expanded="true" aria-controls="collapse-quarto-accordion-ac-item2foritem2">
+<div class="accordion-header-content">
+Item 2
+</div>
+</button>
+</div>
+<div id="collapse-quarto-accordion-ac-item2foritem2" class="accordion-collapse collapse show" aria-labelledby="heading-quarto-accordion-ac-item2foritem2" data-bs-parent="#quarto-accordion-ac">
+<div class="accordion-body">
+<div class="accordion-body-content">
+This is the body content for item 2
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<div class="accordion-header" id="heading-quarto-accordion-ac-item3foritem3">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-quarto-accordion-ac-item3foritem3" aria-expanded="false" aria-controls="collapse-quarto-accordion-ac-item3foritem3">
+<div class="accordion-header-content">
+Item 3
+</div>
+</button>
+</div>
+<div id="collapse-quarto-accordion-ac-item3foritem3" class="accordion-collapse collapse" aria-labelledby="heading-quarto-accordion-ac-item3foritem3" data-bs-parent="#quarto-accordion-ac">
+<div class="accordion-body">
+<div class="accordion-body-content">
+This is the body content for item 3
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<div class="accordion-header" id="heading-quarto-accordion-ac-item4foritem4">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-quarto-accordion-ac-item4foritem4" aria-expanded="false" aria-controls="collapse-quarto-accordion-ac-item4foritem4">
+<div class="accordion-header-content">
+Item 4
+</div>
+</button>
+</div>
+<div id="collapse-quarto-accordion-ac-item4foritem4" class="accordion-collapse collapse" aria-labelledby="heading-quarto-accordion-ac-item4foritem4" data-bs-parent="#quarto-accordion-ac">
+<div class="accordion-body">
+<div class="accordion-body-content">
+This is the body content for item 4
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="install" class="level2">
+<h2 class="anchored" data-anchor-id="install">Install</h2>
 <ul>
-<li>Requires Quarto &gt;= 1.4.0<br>
-</li>
-<li>In the root of the quarto project, run in terminal:</li>
+<li><p>Requires Quarto &gt;= 1.4.0</p></li>
+<li><p>In the root of the quarto project, run in terminal:</p>
+<pre><code>quarto add royfrancis/quarto-accordion</code></pre></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> add royfrancis/quarto-accordion</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This will install the extension under the <code>_extensions</code> subdirectory.</p>
-</section>
-<section id="usage" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="usage"><span class="header-section-number">2</span> Usage</h2>
-<ul>
-<li>Add <code>accordion</code> to filters<br>
-</li>
-<li>Define accordion contents (header, body) under yaml keyword <code>accordion</code><br>
-</li>
-<li>Insert shortcode in the quarto document</li>
-</ul>
-<p>Here is the syntax where <code>[text]</code> is replaced as needed.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="kw">[</span><span class="at">label</span><span class="kw">]:</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">text content for the header</span><span class="kw">]</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">text content for the body</span><span class="kw">]</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion [label] &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="minimal-usage" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="minimal-usage"><span class="header-section-number">2.1</span> Minimal usage</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">simple</span><span class="kw">:</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Click here to view contents</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion simple &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p></p><div id="simple" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-simple-wcontentsdycontent">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-simple-wcontentsdycontent" aria-expanded="false" aria-controls="collapse-simple-wcontentsdycontent">
-<div class="accordion-header-content">Click here to view contents</div></button>
-</div>
-<div id="collapse-simple-wcontentsdycontent" class="accordion-collapse collapse" aria-labelledby="heading-simple-wcontentsdycontent" data-bs-parent="simple">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content</div></div>
-</div>
-</div>
-</div>
-<p></p>
-</section>
-<section id="more-accordion-items" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="more-accordion-items"><span class="header-section-number">2.2</span> More accordion items</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">many-items</span><span class="kw">:</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 1</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 1</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 2</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 2</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 3</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 3</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 4</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 4</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion many-items &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p></p><div id="many-items" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-many-items-item1foritem1">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-many-items-item1foritem1" aria-expanded="false" aria-controls="collapse-many-items-item1foritem1">
-<div class="accordion-header-content">Item 1</div></button>
-</div>
-<div id="collapse-many-items-item1foritem1" class="accordion-collapse collapse" aria-labelledby="heading-many-items-item1foritem1" data-bs-parent="many-items">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 1</div></div>
-</div>
-</div>
-<div class="accordion-item">
-<div class="accordion-header" id="heading-many-items-item2foritem2">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-many-items-item2foritem2" aria-expanded="false" aria-controls="collapse-many-items-item2foritem2">
-<div class="accordion-header-content">Item 2</div></button>
-</div>
-<div id="collapse-many-items-item2foritem2" class="accordion-collapse collapse" aria-labelledby="heading-many-items-item2foritem2" data-bs-parent="many-items">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 2</div></div>
-</div>
-</div>
-<div class="accordion-item">
-<div class="accordion-header" id="heading-many-items-item3foritem3">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-many-items-item3foritem3" aria-expanded="false" aria-controls="collapse-many-items-item3foritem3">
-<div class="accordion-header-content">Item 3</div></button>
-</div>
-<div id="collapse-many-items-item3foritem3" class="accordion-collapse collapse" aria-labelledby="heading-many-items-item3foritem3" data-bs-parent="many-items">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 3</div></div>
-</div>
-</div>
-<div class="accordion-item">
-<div class="accordion-header" id="heading-many-items-item4foritem4">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-many-items-item4foritem4" aria-expanded="false" aria-controls="collapse-many-items-item4foritem4">
-<div class="accordion-header-content">Item 4</div></button>
-</div>
-<div id="collapse-many-items-item4foritem4" class="accordion-collapse collapse" aria-labelledby="heading-many-items-item4foritem4" data-bs-parent="many-items">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 4</div></div>
-</div>
-</div>
-</div>
-<p></p>
-</section>
-<section id="multiple-accordions" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="multiple-accordions"><span class="header-section-number">2.3</span> Multiple accordions</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">ac-1</span><span class="kw">:</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 1</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 1</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 2</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 2</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">ac-2</span><span class="kw">:</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 1</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 1</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 2</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 2</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ot">**Topic</span><span class="at"> A**</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion ac-1 &gt;</span><span class="kw">}</span><span class="at">}</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="ot">**Topic</span><span class="at"> B**</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion ac-2 &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Topic A</strong></p>
-<p></p><div id="ac-1" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-ac-1-item1foritem1">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-ac-1-item1foritem1" aria-expanded="false" aria-controls="collapse-ac-1-item1foritem1">
-<div class="accordion-header-content">Item 1</div></button>
-</div>
-<div id="collapse-ac-1-item1foritem1" class="accordion-collapse collapse" aria-labelledby="heading-ac-1-item1foritem1" data-bs-parent="ac-1">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 1</div></div>
-</div>
-</div>
-<div class="accordion-item">
-<div class="accordion-header" id="heading-ac-1-item2foritem2">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-ac-1-item2foritem2" aria-expanded="false" aria-controls="collapse-ac-1-item2foritem2">
-<div class="accordion-header-content">Item 2</div></button>
-</div>
-<div id="collapse-ac-1-item2foritem2" class="accordion-collapse collapse" aria-labelledby="heading-ac-1-item2foritem2" data-bs-parent="ac-1">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 2</div></div>
-</div>
-</div>
-</div>
-<p></p>
-<p><strong>Topic B</strong></p>
-<p></p><div id="ac-2" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-ac-2-item1foritem1">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-ac-2-item1foritem1" aria-expanded="false" aria-controls="collapse-ac-2-item1foritem1">
-<div class="accordion-header-content">Item 1</div></button>
-</div>
-<div id="collapse-ac-2-item1foritem1" class="accordion-collapse collapse" aria-labelledby="heading-ac-2-item1foritem1" data-bs-parent="ac-2">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 1</div></div>
-</div>
-</div>
-<div class="accordion-item">
-<div class="accordion-header" id="heading-ac-2-item2foritem2">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-ac-2-item2foritem2" aria-expanded="false" aria-controls="collapse-ac-2-item2foritem2">
-<div class="accordion-header-content">Item 2</div></button>
-</div>
-<div id="collapse-ac-2-item2foritem2" class="accordion-collapse collapse" aria-labelledby="heading-ac-2-item2foritem2" data-bs-parent="ac-2">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 2</div></div>
-</div>
-</div>
-</div>
-<p></p>
-</section>
-<section id="collapse-state" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="collapse-state"><span class="header-section-number">2.4</span> Collapse state</h3>
-<p>All accordion items are collapsed as the default state. Any of the accordion items can be initialized as expanded by setting <code>collapsed: false</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">ac-3</span><span class="kw">:</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 1</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 1</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 2</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 2</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">collapsed</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">ac-4</span><span class="kw">:</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 1</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 1</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">collapsed</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Item 2</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This is the body content for item 2</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion ac-3 &gt;</span><span class="kw">}</span><span class="at">}</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion ac-4 &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p></p><div id="ac-3" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-ac-3-item1foritem1">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-ac-3-item1foritem1" aria-expanded="false" aria-controls="collapse-ac-3-item1foritem1">
-<div class="accordion-header-content">Item 1</div></button>
-</div>
-<div id="collapse-ac-3-item1foritem1" class="accordion-collapse collapse" aria-labelledby="heading-ac-3-item1foritem1" data-bs-parent="ac-3">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 1</div></div>
-</div>
-</div>
-<div class="accordion-item">
-<div class="accordion-header" id="heading-ac-3-item2foritem2">
-<button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-ac-3-item2foritem2" aria-expanded="true" aria-controls="collapse-ac-3-item2foritem2">
-<div class="accordion-header-content">Item 2</div></button>
-</div>
-<div id="collapse-ac-3-item2foritem2" class="accordion-collapse collapse show" aria-labelledby="heading-ac-3-item2foritem2" data-bs-parent="ac-3">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 2</div></div>
-</div>
-</div>
-</div>
-<p></p>
-<p></p><div id="ac-4" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-ac-4-item1foritem1">
-<button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-ac-4-item1foritem1" aria-expanded="true" aria-controls="collapse-ac-4-item1foritem1">
-<div class="accordion-header-content">Item 1</div></button>
-</div>
-<div id="collapse-ac-4-item1foritem1" class="accordion-collapse collapse show" aria-labelledby="heading-ac-4-item1foritem1" data-bs-parent="ac-4">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 1</div></div>
-</div>
-</div>
-<div class="accordion-item">
-<div class="accordion-header" id="heading-ac-4-item2foritem2">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-ac-4-item2foritem2" aria-expanded="false" aria-controls="collapse-ac-4-item2foritem2">
-<div class="accordion-header-content">Item 2</div></button>
-</div>
-<div id="collapse-ac-4-item2foritem2" class="accordion-collapse collapse" aria-labelledby="heading-ac-4-item2foritem2" data-bs-parent="ac-4">
-<div class="accordion-body">
-<div class="accordion-body-content">This is the body content for item 2</div></div>
-</div>
-</div>
-</div>
-<p></p>
-</section>
-</section>
-<section id="advanced" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="advanced"><span class="header-section-number">3</span> Advanced</h2>
-<section id="on-item-ids" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="on-item-ids"><span class="header-section-number">3.1</span> On Item IDs</h3>
-<p>Accordion items are automatically given unique ids. This should generally work fine. In case of a conflict, IDs can be set manually using <code>id: my-id</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">id-conflict</span><span class="kw">:</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Bla</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> bla</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Bla</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> bla</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">id-conflict-resolved</span><span class="kw">:</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Bla</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> bla</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> Bla</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> bla</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">id</span><span class="kw">:</span><span class="at"> my-id</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="at">An example of accordion items with conflicting IDs</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion id-conflict &gt;</span><span class="kw">}</span><span class="at">}</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="at">Using custom ID to resolve conflict</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion id-conflict-resolved &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>An example of accordion items with conflicting IDs</p>
-<p></p><div id="id-conflict" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-id-conflict-blabla">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-id-conflict-blabla" aria-expanded="false" aria-controls="collapse-id-conflict-blabla">
-<div class="accordion-header-content">Bla</div></button>
-</div>
-<div id="collapse-id-conflict-blabla" class="accordion-collapse collapse" aria-labelledby="heading-id-conflict-blabla" data-bs-parent="id-conflict">
-<div class="accordion-body">
-<div class="accordion-body-content">bla</div></div>
-</div>
-</div>
-<div class="accordion-item">
-<div class="accordion-header" id="heading-id-conflict-blabla">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-id-conflict-blabla" aria-expanded="false" aria-controls="collapse-id-conflict-blabla">
-<div class="accordion-header-content">Bla</div></button>
-</div>
-<div id="collapse-id-conflict-blabla" class="accordion-collapse collapse" aria-labelledby="heading-id-conflict-blabla" data-bs-parent="id-conflict">
-<div class="accordion-body">
-<div class="accordion-body-content">bla</div></div>
-</div>
-</div>
-</div>
-<p></p>
-<p>Using custom ID to resolve conflict</p>
-<p></p><div id="id-conflict-resolved" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-id-conflict-resolved-blabla">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-id-conflict-resolved-blabla" aria-expanded="false" aria-controls="collapse-id-conflict-resolved-blabla">
-<div class="accordion-header-content">Bla</div></button>
-</div>
-<div id="collapse-id-conflict-resolved-blabla" class="accordion-collapse collapse" aria-labelledby="heading-id-conflict-resolved-blabla" data-bs-parent="id-conflict-resolved">
-<div class="accordion-body">
-<div class="accordion-body-content">bla</div></div>
-</div>
-</div>
-<div class="accordion-item">
-<div class="accordion-header" id="heading-id-conflict-resolved-my-id">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-id-conflict-resolved-my-id" aria-expanded="false" aria-controls="collapse-id-conflict-resolved-my-id">
-<div class="accordion-header-content">Bla</div></button>
-</div>
-<div id="collapse-id-conflict-resolved-my-id" class="accordion-collapse collapse" aria-labelledby="heading-id-conflict-resolved-my-id" data-bs-parent="id-conflict-resolved">
-<div class="accordion-body">
-<div class="accordion-body-content">bla</div></div>
-</div>
-</div>
-</div>
-<p></p>
-</section>
-<section id="css-styling" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="css-styling"><span class="header-section-number">3.2</span> CSS styling</h3>
-<p>To target all accordian sub components on a page, target the class <code>.quarto-accordion</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:rules --*/</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">.quarto-accordion</span> <span class="fu">.accordion-header-content</span> {</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">700</span><span class="op">;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To target specific accordions, use the label of that accordion as id. For example an accordion labelled <code>css-styling</code>. Here is the qmd file.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">css-styling</span><span class="kw">:</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> This header has style</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> This body has style</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion css-styling &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>And here is the css file.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:rules --*/</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#css-styling</span> <span class="fu">.quarto-accordion</span> <span class="fu">.accordion-header-content</span> {</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">700</span><span class="op">;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">red</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#css-styling</span> <span class="fu">.quarto-accordion</span> <span class="fu">.accordion-body-content</span> {</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">green</span><span class="op">;</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p></p><div id="css-styling" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-css-styling-hasstylehasstyle">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-css-styling-hasstylehasstyle" aria-expanded="false" aria-controls="collapse-css-styling-hasstylehasstyle">
-<div class="accordion-header-content">This header has style</div></button>
-</div>
-<div id="collapse-css-styling-hasstylehasstyle" class="accordion-collapse collapse" aria-labelledby="heading-css-styling-hasstylehasstyle" data-bs-parent="css-styling">
-<div class="accordion-body">
-<div class="accordion-body-content">This body has style</div></div>
-</div>
-</div>
-</div>
-<p></p>
-</section>
-</section>
-<section id="limitations" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="limitations"><span class="header-section-number">4</span> Limitations</h2>
-<section id="markdown-formatting" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="markdown-formatting"><span class="header-section-number">4.1</span> Markdown formatting</h3>
-<p>Markdown text formatting in yaml metadata does not work.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">markdown-formatting</span><span class="kw">:</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> </span><span class="st">"**How much formatting can I have in an accordion?**"</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> </span><span class="st">"This is **bold** and *italic*"</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion markdown-formatting &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p></p><div id="markdown-formatting" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-markdown-formatting-accordionanditalic">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-markdown-formatting-accordionanditalic" aria-expanded="false" aria-controls="collapse-markdown-formatting-accordionanditalic">
-<div class="accordion-header-content">How much formatting can I have in an accordion?</div></button>
-</div>
-<div id="collapse-markdown-formatting-accordionanditalic" class="accordion-collapse collapse" aria-labelledby="heading-markdown-formatting-accordionanditalic" data-bs-parent="markdown-formatting">
-<div class="accordion-body">
-<div class="accordion-body-content">This is bold and italic</div></div>
-</div>
-</div>
-</div>
-<p></p>
-</section>
-<section id="multiline-markdown-content" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="multiline-markdown-content"><span class="header-section-number">4.2</span> Multiline markdown content</h3>
-<p>Multiline content and markdown formatting in yaml metadata does not work.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">multiline-markdown-formatting</span><span class="kw">:</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> </span><span class="st">"**How much formatting can I have in an accordion?**"</span><span class="at"> </span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">      body</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        This is multiline yaml content.</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        This is **bold** and *italic*.</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        This is an image link</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        ![](https://images.pexels.com/photos/7604425/pexels-photo-7604425.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        This is a markdown table.</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        |Item|Category|</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        |Spools|Marketing|</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        |Cutters|Marketing|</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        |Pins|Logistics|</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion multiline-markdown-formatting &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p></p><div id="multiline-markdown-formatting" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-multiline-markdown-formatting-accordionslogistics">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-multiline-markdown-formatting-accordionslogistics" aria-expanded="false" aria-controls="collapse-multiline-markdown-formatting-accordionslogistics">
-<div class="accordion-header-content">How much formatting can I have in an accordion?</div></button>
-</div>
-<div id="collapse-multiline-markdown-formatting-accordionslogistics" class="accordion-collapse collapse" aria-labelledby="heading-multiline-markdown-formatting-accordionslogistics" data-bs-parent="multiline-markdown-formatting">
-<div class="accordion-body">
-<div class="accordion-body-content">This is multiline yaml content.This is bold and italic.This is an image linkThis is a markdown table.ItemCategorySpoolsMarketingCuttersMarketingPinsLogistics</div></div>
-</div>
-</div>
-</div>
-<p></p>
-</section>
-<section id="html-formatting" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="html-formatting"><span class="header-section-number">4.3</span> HTML formatting</h3>
-<p>HTML content in yaml metadata does not work.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">html-formatting</span><span class="kw">:</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;b&gt;How much formatting can I have in an accordion?&lt;/b&gt;"</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body</span><span class="kw">:</span><span class="at"> </span><span class="st">"This is &lt;b&gt;bold&lt;/b&gt; and &lt;i&gt;italic&lt;/i&gt;"</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion html-formatting &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p></p><div id="html-formatting" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-html-formatting-accordionanditalic">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-html-formatting-accordionanditalic" aria-expanded="false" aria-controls="collapse-html-formatting-accordionanditalic">
-<div class="accordion-header-content">How much formatting can I have in an accordion?</div></button>
-</div>
-<div id="collapse-html-formatting-accordionanditalic" class="accordion-collapse collapse" aria-labelledby="heading-html-formatting-accordionanditalic" data-bs-parent="html-formatting">
-<div class="accordion-body">
-<div class="accordion-body-content">This is bold and italic</div></div>
-</div>
-</div>
-</div>
-<p></p>
-</section>
-<section id="multiline-html-content" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="multiline-html-content"><span class="header-section-number">4.4</span> Multiline HTML content</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">accordion</span><span class="kw">:</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">multiline-html-formatting</span><span class="kw">:</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">header</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;b&gt;How does the accordion handle HTML?&lt;/b&gt;"</span><span class="at"> </span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">      body</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        This is multiline yaml content.</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        This is &lt;b&gt;bold&lt;/b&gt; and &lt;i&gt;italic&lt;/i&gt;.</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        This is an html image link</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        &lt;img src="https://images.pexels.com/photos/7604425/pexels-photo-7604425.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="Image" style="max-width: 100%; height: auto;" /&gt;</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> accordion</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; accordion multiline-html-formatting &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p></p><div id="multiline-html-formatting" class="accordion quarto-accordion">
-<div class="accordion-item">
-<div class="accordion-header" id="heading-multiline-html-formatting-ndlehtmlimagelink">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-multiline-html-formatting-ndlehtmlimagelink" aria-expanded="false" aria-controls="collapse-multiline-html-formatting-ndlehtmlimagelink">
-<div class="accordion-header-content">How does the accordion handle HTML?</div></button>
-</div>
-<div id="collapse-multiline-html-formatting-ndlehtmlimagelink" class="accordion-collapse collapse" aria-labelledby="heading-multiline-html-formatting-ndlehtmlimagelink" data-bs-parent="multiline-html-formatting">
-<div class="accordion-body">
-<div class="accordion-body-content">This is multiline yaml content.This is bold and italic.This is an html image link</div></div>
-</div>
-</div>
-</div>
-<p></p>
-</section>
-<section id="other-output-formats" class="level3" data-number="4.5">
-<h3 data-number="4.5" class="anchored" data-anchor-id="other-output-formats"><span class="header-section-number">4.5</span> Other output formats</h3>
-<p>The accordion content is simply ignored when the output format is anything other than <code>html</code>.</p>
-</section>
+<p>This will install the extension under the <code>_extensions</code> subdirectory. See ‘usage’ document for details on how to use the shortcode.</p>
+
+
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -752,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/royfrancis\.github\.io\/quarto-accordion\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1080,6 +632,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>2026 Roy Francis • <a href="https://choosealicense.com/licenses/mit/">MIT License</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Published with <a href="https://quarto.org/">Quarto</a> v1.8.25</p>
+</div>
+  </div>
+</footer>
 
 
 

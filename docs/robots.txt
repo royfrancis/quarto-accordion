@@ -1,0 +1,1 @@
+Sitemap: https://royfrancis.github.io/quarto-accordion/sitemap.xml
