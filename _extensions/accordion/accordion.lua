@@ -61,6 +61,35 @@ local function generateId(accordionId, headerContent, bodyContent, item)
   return "-" .. accordionId .. "-" .. id
 end
 
+-- Convert a content value to a list of Pandoc Blocks
+local function contentToBlocks(value)
+  if value == nil then
+    return pandoc.Blocks({})
+  end
+
+  local valType = pandoc.utils.type(value)
+
+  if valType == "Inlines" then
+    return pandoc.Blocks({pandoc.Plain(value)})
+  end
+
+  if valType == "Blocks" then
+    return pandoc.Blocks(value)
+  end
+
+  -- Plain string (e.g. from inline kwargs) - parse as markdown
+  if type(value) == "string" then
+    local doc = pandoc.read(value, "markdown")
+    -- Convert single Para to Plain to avoid extra <p> margin
+    if #doc.blocks == 1 and doc.blocks[1].t == "Para" then
+      return pandoc.Blocks({pandoc.Plain(doc.blocks[1].content)})
+    end
+    return doc.blocks
+  end
+
+  return pandoc.Blocks({pandoc.Plain({pandoc.Str(pandoc.utils.stringify(value))})})
+end
+
 -- Look up accordion items from yaml metadata by label
 local function getItemsFromMeta(meta, accordionId)
   local meta_accordion = meta["accordion"]
@@ -117,9 +146,12 @@ local function getItemsFromKwargs(kwargs, accordionId)
   return nil, "'" .. accordionId .. "': 'label' kwarg specified without 'header'/'body' or 'items' kwargs."
 end
 
--- Render accordion items to HTML
+-- Render accordion items as Pandoc Blocks
 local function renderAccordion(accordionId, accordion_items, userLabel)
-  local html = "<div id=\"" .. accordionId .. "\" class=\"accordion quarto-accordion\">\n"
+  local blocks = pandoc.Blocks({})
+
+  blocks:insert(pandoc.RawBlock("html",
+    "<div id=\"" .. accordionId .. "\" class=\"accordion quarto-accordion\">"))
 
   for i = 1, #accordion_items do
     local item = accordion_items[i]
@@ -133,7 +165,8 @@ local function renderAccordion(accordionId, accordion_items, userLabel)
       local missingStr = table.concat(missing, "' and '")
       local errorMsg = "'" .. userLabel .. "': Item " .. i .. " is missing '" .. missingStr .. "'."
       quarto.log.warning("Accordion shortcode: " .. errorMsg)
-      html = html .. "<div class=\"accordion-error\"><strong>Accordion Error:</strong> " .. errorMsg .. "</div>\n"
+      blocks:insert(pandoc.RawBlock("html",
+        "<div class=\"accordion-error\"><strong>Accordion Error:</strong> " .. errorMsg .. "</div>"))
     else
       local collapseId = generateId(accordionId, headerContent, bodyContent, item)
       local collapsed = item.collapsed
@@ -143,24 +176,37 @@ local function renderAccordion(accordionId, accordion_items, userLabel)
       local collapseAria = collapsed and "false" or "true"
       local collapseShow = collapsed and "" or " show"
 
-      html = html .. "<div class=\"accordion-item\">\n"
-      html = html .. "<div class=\"accordion-header\" id=\"heading" .. collapseId .. "\">\n"
-      html = html .. "<button class=\"accordion-button " .. collapseClass .. "\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse" .. collapseId .. "\" aria-expanded=\"" .. collapseAria .. "\" aria-controls=\"collapse" .. collapseId .. "\">\n"
-      html = html .. "<div class=\"accordion-header-content\"\n>"
-      html = html .. headerContent
-      html = html .. "</div>"
-      html = html .. "</button>\n</div>\n"
-      html = html .. "<div id=\"collapse" .. collapseId .. "\" class=\"accordion-collapse collapse" .. collapseShow .. "\" aria-labelledby=\"heading" .. collapseId .. "\" data-bs-parent=\"#" .. accordionId .. "\">\n"
-      html = html .. "<div class=\"accordion-body\">\n"
-      html = html .. "<div class=\"accordion-body-content\"\n>"
-      html = html .. bodyContent
-      html = html .. "</div>"
-      html = html .. "</div>\n</div>\n</div>\n"
+      -- Open accordion item, header, button
+      blocks:insert(pandoc.RawBlock("html",
+        "<div class=\"accordion-item\">\n" ..
+        "<div class=\"accordion-header\" id=\"heading" .. collapseId .. "\">\n" ..
+        "<button class=\"accordion-button " .. collapseClass .. "\" type=\"button\" " ..
+        "data-bs-toggle=\"collapse\" data-bs-target=\"#collapse" .. collapseId .. "\" " ..
+        "aria-expanded=\"" .. collapseAria .. "\" aria-controls=\"collapse" .. collapseId .. "\">\n" ..
+        "<div class=\"accordion-header-content\">"))
+
+      -- Header as native Pandoc content
+      blocks:extend(contentToBlocks(item.header))
+
+      -- Close header, open body
+      blocks:insert(pandoc.RawBlock("html",
+        "</div>\n</button>\n</div>\n" ..
+        "<div id=\"collapse" .. collapseId .. "\" class=\"accordion-collapse collapse" .. collapseShow .. "\" " ..
+        "aria-labelledby=\"heading" .. collapseId .. "\" data-bs-parent=\"#" .. accordionId .. "\">\n" ..
+        "<div class=\"accordion-body\">\n" ..
+        "<div class=\"accordion-body-content\">"))
+
+      -- Body as native Pandoc content
+      blocks:extend(contentToBlocks(item.body))
+
+      -- Close body and accordion item
+      blocks:insert(pandoc.RawBlock("html",
+        "</div>\n</div>\n</div>\n</div>"))
     end
   end
 
-  html = html .. "</div>\n"
-  return pandoc.RawInline("html", html)
+  blocks:insert(pandoc.RawBlock("html", "</div>"))
+  return blocks
 end
 
 
