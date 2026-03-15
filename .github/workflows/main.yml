@@ -1,0 +1,39 @@
+name: deploy
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v6
+      - name: Setup quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.9.35
+          tinytex: true
+      - run: quarto --version
+      - run: quarto add --no-prompt royfrancis/quarto-accordion
+      - run: quarto render
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: 'docs'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
