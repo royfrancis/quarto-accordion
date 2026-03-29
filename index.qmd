@@ -15,6 +15,7 @@ accordion:
 format:
   html:
     title-block-banner: true
+    theme: pulse
 ---
 
 A quarto shortcode extension to add [Bootstrap accordion component](https://getbootstrap.com/docs/5.1/components/accordion/) for **html** and **revealjs** formats. Minimal non-interactive fallbacks are provided for other output formats **pdf** and **typst**.

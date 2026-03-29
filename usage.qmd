@@ -95,6 +95,7 @@ format:
     number-sections: true
     title-block-banner: true
     code-overflow: wrap
+    theme: pulse
   pdf:
     output-file: usage-latex.pdf
     toc: true

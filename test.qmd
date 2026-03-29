@@ -73,6 +73,7 @@ format:
     toc: true
     title-block-banner: true
     code-overflow: wrap
+    theme: pulse
   pdf:
     output-file: test-latex.pdf
     toc: true
