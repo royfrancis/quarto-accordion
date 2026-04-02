@@ -6,6 +6,10 @@ A quarto shortcode extension to add [Bootstrap accordion component](https://getb
 
 ## Latest updates
 
+- v1.1.1
+- Reorganized lua code into modules
+- Removed terminal messages
+
 - v1.1.0
 - Accordion content can now be defined inline in the shortcode arguments. This is in addition to the existing approach of defining content in the YAML metadata.
 - Markdown and HTML formatting is supported in accordion content

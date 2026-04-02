@@ -2,7 +2,6 @@ project:
   type: website
   output-dir: docs
 
-
 website:
   title: "Accordion"
   site-url: "https://royfrancis.github.io/quarto-accordion/"

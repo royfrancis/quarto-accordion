@@ -9,5 +9,5 @@
 to-do.txt
 /.quarto/
 **/*.quarto_ipynb
-
 /.luarc.json
+docs
