@@ -90,12 +90,8 @@ accordion:
 format:
   html:
     css: styles.scss
-    toc: true
     toc-depth: 3
     number-sections: true
-    title-block-banner: true
-    code-overflow: wrap
-    theme: pulse
   pdf:
     output-file: usage-latex.pdf
     toc: true
@@ -108,8 +104,6 @@ format:
     number-sections: true
     title-block-banner: true
     code-overflow: wrap
-filters:
-  - accordion
 ---
 
 A quarto shortcode extension to add [Bootstrap accordion component](https://getbootstrap.com/docs/5.1/components/accordion/) for **html** and **revealjs** formats. Minimal non-interactive fallbacks are provided for other output formats **pdf** and **typst**.
@@ -148,16 +142,16 @@ filters:
 {{{< accordion [label] >}}}
 ```
 
-In this example, the arguments were defined in the YAML metadata. Arguments can also be defined directly in the shortcode. This is referred to as 'Inline'. The `label` becomes the accordion id, while `header`, `body`, `collapsed` and `id` control the item content.
+In this example, the arguments were defined in the YAML metadata. Arguments can also be defined directly in the shortcode. This is referred to as 'Inline'. The optional `label` sets a custom accordion id (defaults to auto-generated from content), while `header`, `body`, `collapsed` and `id` control the item content.
 
 ```lua
-{{{< accordion label="[label]" header="[text content for the header]" body="[text content for the body]" collapsed="[true/false, optional, defaults to true]" id="[text, optional, defaults to auto-generated]" >}}}
+{{{< accordion label="[label, optional, defaults to auto-generated]" header="[text content for the header]" body="[text content for the body]" collapsed="[true/false, optional, defaults to true]" id="[text, optional, defaults to auto-generated]" >}}}
 ```
 
 You can also mix and match these approaches in the same document as is the case in this document.
 
 ::: {.callout-warning}
-Only use alphabets, numbers, hyphens and underscores in the label.
+If a custom `label` is provided, only use alphabets, numbers, hyphens and underscores.
 :::
 
 ## Minimal usage
@@ -181,10 +175,10 @@ filters:
 ### Inline content
 
 ```lua
-{{{< accordion label="simple-inline" header="Click here to view contents" body="This accordion is defined inline." >}}}
+{{{< accordion header="Click here to view contents" body="This accordion is defined inline." >}}}
 ```
 
-{{< accordion label="simple-inline" header="Click here to view contents" body="This accordion is defined inline." >}}
+{{< accordion header="Click here to view contents" body="This accordion is defined inline." >}}
 
 ## More accordion items
 ### YAML metadata
@@ -215,10 +209,10 @@ filters:
 Multiple inline items are defined using JSON.
 
 ```lua
-{{{< accordion label="inline-multi" items='[{"header":"Inline Item 1","body":"Content for inline item 1."},{"header":"Inline Item 2","body":"Content for inline item 2."}]' >}}}
+{{{< accordion items='[{"header":"Inline Item 1","body":"Content for inline item 1."},{"header":"Inline Item 2","body":"Content for inline item 2."}]' >}}}
 ```
 
-{{< accordion label="inline-multi" items='[{"header":"Inline Item 1","body":"Content for inline item 1."},{"header":"Inline Item 2","body":"Content for inline item 2."}]' >}}
+{{< accordion items='[{"header":"Inline Item 1","body":"Content for inline item 1."},{"header":"Inline Item 2","body":"Content for inline item 2."}]' >}}
 
 ## Multiple accordions
 
@@ -293,10 +287,10 @@ filters:
 ### Inline content
 
 ```lua
-{{{< accordion label="inline-expanded" header="This item starts expanded" body="Set collapsed to false to show content by default." collapsed="false" >}}}
+{{{< accordion header="This item starts expanded" body="Set collapsed to false to show content by default." collapsed="false" >}}}
 ```
 
-{{< accordion label="inline-expanded" header="This item starts expanded" body="Set collapsed to false to show content by default." collapsed="false" >}}
+{{< accordion header="This item starts expanded" body="Set collapsed to false to show content by default." collapsed="false" >}}
 
 ## Item IDs
 
@@ -342,10 +336,10 @@ Using custom ID to resolve conflict and now they work independently.
 ### Inline content
 
 ```lua
-{{{< accordion label="inline-custom-id" header="Custom item id" body="Custom ids are useful when you need anchor links." id="custom-item-1" >}}}
+{{{< accordion header="Custom item id" body="Custom ids are useful when you need anchor links." id="custom-item-1" >}}}
 ```
 
-{{< accordion label="inline-custom-id" header="Custom item id" body="Custom ids are useful when you need anchor links." id="custom-item-1" >}}
+{{< accordion header="Custom item id" body="Custom ids are useful when you need anchor links." id="custom-item-1" >}}
 
 ## CSS styling
 

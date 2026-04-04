@@ -4,18 +4,7 @@ A quarto shortcode extension to add [Bootstrap accordion component](https://getb
 
 ![](preview.jpg)
 
-## Latest updates
-
-- v1.1.1
-- Reorganized lua code into modules
-- Removed terminal messages
-
-- v1.1.0
-- Accordion content can now be defined inline in the shortcode arguments. This is in addition to the existing approach of defining content in the YAML metadata.
-- Markdown and HTML formatting is supported in accordion content
-- Support for additional output formats such as pdf, typst and revealjs
-- Plain content fallback for unsupported formats
-- More documentation and testing
+See [changelog.md](changelog.md) for latest updates.
 
 ## Install
 
@@ -53,11 +42,11 @@ filters:
 ### Inline content
 
 ```
-{{< accordion label="accordion-2" header="Click here to view contents" body="This is the body content" collapsed=true >}}
+{{< accordion header="Click here to view contents" body="This is the body content" collapsed=true >}}
 ```
 
 ```
-{{< accordion label="accordion-3" items='[{"header":"Item 1","body":"This is the body content for item 1.","collapsed":true},{"header":"Item 2","body":"This is the body content for item 2.","collapsed":true}]' >}}
+{{< accordion items='[{"header":"Item 1","body":"This is the body content for item 1.","collapsed":true},{"header":"Item 2","body":"This is the body content for item 2.","collapsed":true}]' >}}
 ```
 
 For more examples and usage guide, see [here](https://royfrancis.github.io/quarto-accordion).

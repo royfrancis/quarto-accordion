@@ -20,6 +20,9 @@ website:
       - text: "Test"
         href: "test.html"
         aria-label: "Test"
+      - text: "Versions"
+        href: "changelog.html"
+        aria-label: "Versions"
     right:
       - icon: github
         aria-label: "GitHub"
@@ -29,5 +32,13 @@ website:
     left: "{{< meta current_year >}} Roy Francis • [MIT License](https://choosealicense.com/licenses/mit/)"
     right: "Published with [Quarto](https://quarto.org/) v{{< meta quarto_version >}}"
 
+format:
+  html:
+    theme: pulse
+    toc: true
+    code-overflow: wrap
+    title-block-banner: true
+
 filters:
   - custom.lua
+  - accordion

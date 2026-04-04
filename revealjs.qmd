@@ -103,50 +103,50 @@ First item collapsed (default), second item expanded.
 ## S7: Inline simple
 
 ```lua
-{{{< accordion label="inline-simple" header="Click to expand" body="This content is defined inline." >}}}
+{{{< accordion header="Click to expand" body="This content is defined inline." >}}}
 ```
 
-{{< accordion label="inline-simple" header="Click to expand" body="This content is defined inline." >}}
+{{< accordion header="Click to expand" body="This content is defined inline." >}}
 
 ## S8: Inline collapsed false
 
 ```lua
-{{{< accordion label="inline-expanded" header="This starts expanded" body="Expanded content by default." collapsed="false" >}}}
+{{{< accordion header="This starts expanded" body="Expanded content by default." collapsed="false" >}}}
 ```
 
-{{< accordion label="inline-expanded" header="This starts expanded" body="Expanded content by default." collapsed="false" >}}
+{{< accordion header="This starts expanded" body="Expanded content by default." collapsed="false" >}}
 
 ## S9: Inline with custom id
 
 ```lua
-{{{< accordion label="inline-custom-id" header="Custom item id" body="Custom ids are useful for anchor links." id="custom-item-revealjs" >}}}
+{{{< accordion header="Custom item id" body="Custom ids are useful for anchor links." id="custom-item-revealjs" >}}}
 ```
 
-{{< accordion label="inline-custom-id" header="Custom item id" body="Custom ids are useful for anchor links." id="custom-item-revealjs" >}}
+{{< accordion header="Custom item id" body="Custom ids are useful for anchor links." id="custom-item-revealjs" >}}
 
 ## S10: Inline multi items via JSON
 
 ```lua
-{{{< accordion label="inline-multi" items='[{"header":"Inline Item 1","body":"Content for item 1."},{"header":"Inline Item 2","body":"Content for item 2.","collapsed":false}]' >}}}
+{{{< accordion items='[{"header":"Inline Item 1","body":"Content for item 1."},{"header":"Inline Item 2","body":"Content for item 2.","collapsed":false}]' >}}}
 ```
 
-{{< accordion label="inline-multi" items='[{"header":"Inline Item 1","body":"Content for item 1."},{"header":"Inline Item 2","body":"Content for item 2.","collapsed":false}]' >}}
+{{< accordion items='[{"header":"Inline Item 1","body":"Content for item 1."},{"header":"Inline Item 2","body":"Content for item 2.","collapsed":false}]' >}}
 
 ## S11: Inline markdown formatting
 
 ```lua
-{{{< accordion label="inline-md" header="**Bold header**" body="This is **bold** and *italic*" >}}}
+{{{< accordion header="**Bold header**" body="This is **bold** and *italic*" >}}}
 ```
 
-{{< accordion label="inline-md" header="**Bold header**" body="This is **bold** and *italic*" >}}
+{{< accordion header="**Bold header**" body="This is **bold** and *italic*" >}}
 
 ## S12: Multiple accordions on one slide
 
-{{< accordion label="slide-acc-1" header="First accordion" body="Body of first accordion on this slide." >}}
+{{< accordion header="First accordion" body="Body of first accordion on this slide." >}}
 
-{{< accordion label="slide-acc-2" header="Second accordion" body="Body of second accordion on this slide." >}}
+{{< accordion header="Second accordion" body="Body of second accordion on this slide." >}}
 
-{{< accordion label="slide-acc-3" header="Third accordion" body="Body of third accordion on this slide." >}}
+{{< accordion header="Third accordion" body="Body of third accordion on this slide." >}}
 
 ## E1: No arguments
 
@@ -207,15 +207,15 @@ First item collapsed (default), second item expanded.
 ## E8: Inline missing body
 
 ```lua
-{{{< accordion label="inline-no-body" header="Header only" >}}}
+{{{< accordion header="Header only" >}}}
 ```
 
-{{< accordion label="inline-no-body" header="Header only" >}}
+{{< accordion header="Header only" >}}
 
 ## E9: Inline missing header
 
 ```lua
-{{{< accordion label="inline-no-header" body="Body only" >}}}
+{{{< accordion body="Body only" >}}}
 ```
 
-{{< accordion label="inline-no-header" body="Body only" >}}
+{{< accordion body="Body only" >}}

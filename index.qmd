@@ -12,10 +12,7 @@ accordion:
       body: This is the body content for item 3
     - header: Item 4
       body: This is the body content for item 4
-format:
-  html:
-    title-block-banner: true
-    theme: pulse
+format: html
 ---
 
 A quarto shortcode extension to add [Bootstrap accordion component](https://getbootstrap.com/docs/5.1/components/accordion/) for **html** and **revealjs** formats. Minimal non-interactive fallbacks are provided for other output formats **pdf** and **typst**.
