@@ -46,8 +46,6 @@ format:
   revealjs:
     smaller: true
     scrollable: true
-filters:
-  - accordion
 ---
 
 ## S1: YAML simple single item

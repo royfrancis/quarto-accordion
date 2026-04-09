@@ -32,8 +32,6 @@ accordion:
       body: This is the body content
       collapsed: true
       id: custom-item-1
-filters:
-  - accordion
 ---
 
 {{< accordion accordion-1 >}}

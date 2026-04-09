@@ -9,6 +9,7 @@ format: html
 - Stable identifiers are automatically generated
 - Updated docs, themes and tests
 - Added changelog
+- Removed mention of filters
 
 ## v1.1.1
 

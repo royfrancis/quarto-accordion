@@ -121,7 +121,6 @@ This will install the extension under the `_extensions` subdirectory.
 
 ## Syntax
 
-- Add `accordion` to filters  
 - Define accordion contents (header, body)
 - Insert shortcode in the quarto document  
 
@@ -135,8 +134,6 @@ accordion:
       body: [text content for the body]
       collapsed: [true/false, optional, defaults to true]
       id: [text, optional, defaults to auto-generated]
-filters:
-  - accordion
 ---
 
 {{{< accordion [label] >}}}
@@ -163,8 +160,6 @@ accordion:
   - simple:
     - header: Click here to view contents
       body: This is the body content
-filters:
-  - accordion
 ---
 
 {{{< accordion simple >}}}
@@ -195,8 +190,6 @@ accordion:
       body: This is the body content for item 3
     - header: Item 4
       body: This is the body content for item 4
-filters:
-  - accordion
 ---
 
 {{{< accordion many-items >}}}
@@ -229,8 +222,6 @@ accordion:
       body: This is the body content for item 1
     - header: Item 2
       body: This is the body content for item 2
-filters:
-  - accordion
 ---
 
 **Topic A**
@@ -271,8 +262,6 @@ accordion:
       collapsed: false
     - header: Item 2
       body: This is the body content for item 2
-filters:
-  - accordion
 ---
 
 {{{< accordion ac-3 >}}}
@@ -312,8 +301,6 @@ accordion:
     - header: Bla
       body: bla
       id: my-id
-filters:
-  - accordion
 ---
 
 An example of accordion items with conflicting IDs where two accordion items have the same ids and hence open/close together.
@@ -364,8 +351,6 @@ accordion:
 format:
   html:
     css: styles.scss
-filters:
-  - accordion
 ---
 
 {{{< accordion custom-css >}}}
@@ -398,8 +383,6 @@ accordion:
   - markdown-formatting:
     - header: "**How much markdown formatting can I have in an accordion?**"
       body: "This is **bold** and *italic*"
-filters:
-  - accordion
 ---
 
 {{{< accordion markdown-formatting >}}}
@@ -429,8 +412,6 @@ accordion:
         |Spools|Marketing|
         |Cutters|Marketing|
         |Pins|Logistics|
-filters:
-  - accordion
 ---
 
 {{{< accordion multiline-markdown-formatting >}}}
@@ -450,8 +431,6 @@ accordion:
   - html-formatting:
     - header: "<b>How much HTML formatting can I have in an accordion?</b>"
       body: "This is <b>bold</b> and <i>italic</i>"
-filters:
-  - accordion
 ---
 
 {{{< accordion html-formatting >}}}
@@ -474,9 +453,6 @@ accordion:
         This is an html image
         
         <img src="preview.jpg" alt="Image" style="max-width: 100%; height: auto;" />
-        
-filters:
-  - accordion
 ---
 
 {{{< accordion multiline-html-formatting >}}}

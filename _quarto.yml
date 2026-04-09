@@ -41,4 +41,3 @@ format:
 
 filters:
   - custom.lua
-  - accordion
